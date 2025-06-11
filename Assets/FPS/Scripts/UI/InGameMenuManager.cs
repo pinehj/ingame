@@ -11,6 +11,9 @@ namespace Unity.FPS.UI
         [Tooltip("Root GameObject of the menu used to toggle its activation")]
         public GameObject MenuRoot;
 
+        public GameObject AchievementRoot;
+        public GameObject AttendanceRoot;
+
         [Tooltip("Master volume when menu is open")] [Range(0.001f, 1f)]
         public float VolumeWhenMenuOpen = 0.5f;
 
@@ -123,6 +126,10 @@ namespace Unity.FPS.UI
                 Time.timeScale = 1f;
                 AudioUtility.SetMasterVolume(1);
             }
+
+
+            AchievementRoot.SetActive(active);
+            AttendanceRoot.SetActive(active);
 
         }
 

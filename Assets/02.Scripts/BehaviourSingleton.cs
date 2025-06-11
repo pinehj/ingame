@@ -3,7 +3,7 @@ using System.Collections;
 
 public class BehaviourSingleton<T> : MonoBehaviour where T : MonoBehaviour
 {
-    private static T i = null;
+    protected static T i = null;
 
     public static T Instance
     {

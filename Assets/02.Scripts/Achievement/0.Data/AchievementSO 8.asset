@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47638a51a17ae854c9ac9dd1fe3a20d1, type: 3}
+  m_Name: AchievementSO 8
+  m_EditorClassIdentifier: 
+  _id: ACH_ATTEND_002
+  _name: "\uBD80\uC9C0\uB7F0\uD568"
+  _description: "\uCD9C\uC11D 3\uC77C\uCC28"
+  _condition: 5
+  _goalValue: 3
+  _rewardCurrencyType: 0
+  _rewardAmount: 50
+  _traillingAchievementID: []

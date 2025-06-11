@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/01.Scenes/LoginScene.unity
+    guid: f923d0946543472408162cc8800c1b13
+  - enabled: 1
     path: Assets/FPS/Scenes/IntroMenu.unity
     guid: 56e3faabc5bb30f49a68bb8f1292f988
   - enabled: 1
@@ -18,3 +21,4 @@ EditorBuildSettings:
     path: Assets/FPS/Scenes/MainScene.unity
     guid: d794a2ef8ba31d847ad3c19d03e2ddb9
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0

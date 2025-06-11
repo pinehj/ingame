@@ -19,7 +19,6 @@ public class EnemySpawner : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log(m_EnemyManager.Enemies.Count);
         if(_spawnTimer <= 0 && m_EnemyManager.Enemies.Count < _maxCount)
         {
             _spawnTimer = _spawnDuration;

@@ -19,6 +19,10 @@ namespace Unity.FPS.UI
                 this);
             playerWeaponsManager.OnAddedWeapon += OnPickupWeapon;
 
+            //
+            AchievementManager.Instance.OnAchievementConditionMet += OnAchievementAchieveReady;
+            //
+
             Jetpack jetpack = FindObjectOfType<Jetpack>();
             DebugUtility.HandleErrorIfNullFindObject<Jetpack, NotificationHUDManager>(jetpack, this);
             jetpack.OnUnlockJetpack += OnUnlockJetpack;
@@ -41,6 +45,12 @@ namespace Unity.FPS.UI
         void OnUnlockJetpack(bool unlock)
         {
             CreateNotification("Jetpack unlocked");
+        }
+
+        void OnAchievementAchieveReady(AchievementDTO data)
+        {
+            CreateNotification($"{data.Name} 업적 달성");
+            Debug.Log("zfzsfzs");
         }
 
         public void CreateNotification(string text)

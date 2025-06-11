@@ -65,7 +65,7 @@ public class CurrencyManager : BehaviourSingleton<CurrencyManager>
 
         _repository.Save(ToDTOList());
         OnDataChanged?.Invoke();
-
+        AchievementManager.Instance.Increase(EAchievementCondition.GoldCollect, value);
         return true;
     }
     public bool Subtract(ECurrencyType type, int value)

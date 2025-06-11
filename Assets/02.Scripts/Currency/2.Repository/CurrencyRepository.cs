@@ -29,13 +29,9 @@ public class CurrencyRepository
         {
             return null;
         }
-        else
-        {
-            string json = PlayerPrefs.GetString(SAVE_KEY);
-            CurrencySaveDatas datas = JsonUtility.FromJson<CurrencySaveDatas>(json);
-
-            return datas.DataList.ConvertAll(data => new CurrencyDTO(data.Type, data.Value));
-        }
+        string json = PlayerPrefs.GetString(SAVE_KEY);
+        CurrencySaveDatas datas = JsonUtility.FromJson<CurrencySaveDatas>(json);
+        return datas.DataList.ConvertAll(data => new CurrencyDTO(data.Type, data.Value));
     }
 }
 
