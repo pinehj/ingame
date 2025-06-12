@@ -60,13 +60,32 @@ public class AttendanceManager : BehaviourSingleton<AttendanceManager>
     public void Attend()
     {
 
-        if (DateTime.Now > _lastAttendnaceDate.Date)
+        //if (DateTime.Now > _lastAttendnaceDate.Date)
         {
             _currentAttendance++;
+            if(_currentAttendance > 7)
+            {
+                foreach(Attendance attendance in _attendances)
+                {
+                    if (attendance.CanClaim(_currentAttendance))
+                    {
+                        TryClaim(attendance.ToDTO());
+                        attendance.IsClaimed = false;
+                    }
+                }
+
+                _currentAttendance %= 7;
+                
+            }
+            
+            
             _lastAttendnaceDate = DateTime.Today;
             OnDataChanged?.Invoke();
             _repository.Save(Attendances, CurrentAttendnace, _lastAttendnaceDate, AccountManager.Instance.Email);
         }
+
+
+
     }
 
     public bool TryClaim(AttendanceDTO attendanceDTO)

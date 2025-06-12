@@ -7,7 +7,18 @@ public class Attendance
     public readonly int RewardDay;
     public readonly ECurrencyType RewardType;
     public readonly int RewardAmount;
-    public bool IsClaimed { get; private set; }
+    private bool _isClaimed;
+    public bool IsClaimed
+    {
+        get
+        {
+            return _isClaimed;
+        }
+        set
+        {
+            _isClaimed = value;
+        }
+    }
 
     public Attendance(AttendanceSO metaData, AttendanceSaveData saveData)
     {

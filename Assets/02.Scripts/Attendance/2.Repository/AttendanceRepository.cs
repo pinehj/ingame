@@ -20,7 +20,7 @@ public class AttendanceRepository
             LastAttendanceDate = lastAttendanceDate.ToString()
         };
         string json = JsonUtility.ToJson(datas);
-        PlayerPrefs.SetString(SAVE_KEY, json);
+        PlayerPrefs.SetString(SAVE_KEY + email, json);
     }
 
     public AttendanceSaveDataList Load(string email)
