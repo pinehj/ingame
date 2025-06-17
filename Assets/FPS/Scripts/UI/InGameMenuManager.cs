@@ -13,6 +13,7 @@ namespace Unity.FPS.UI
 
         public GameObject AchievementRoot;
         public GameObject AttendanceRoot;
+        public GameObject ScoreRoot;
 
         [Tooltip("Master volume when menu is open")] [Range(0.001f, 1f)]
         public float VolumeWhenMenuOpen = 0.5f;
@@ -130,7 +131,7 @@ namespace Unity.FPS.UI
 
             AchievementRoot.SetActive(active);
             AttendanceRoot.SetActive(active);
-
+            ScoreRoot.SetActive(active);
         }
 
         void OnMouseSensitivityChanged(float newValue)
