@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ public class UI_Score : MonoBehaviour
     [SerializeField] private UI_ScoreSlot _myScoreSlot;
     [SerializeField] private Transform _rankingContainer;
     [SerializeField] private UI_ScoreSlot _scoreSlotPrefab;
+    private List<UI_ScoreSlot> _slots;
 
     private void Start()
     {
@@ -20,6 +22,7 @@ public class UI_Score : MonoBehaviour
 
     public void Refresh()
     {
+        _slots = _rankingContainer.GetComponentsInChildren<UI_ScoreSlot>().ToList();
         _currentScore.text = $"Score\n{ScoreManager.Instance.CurrentScore.Scores.ToString()}";
         _name.text = $"Name\n{ScoreManager.Instance.CurrentScore.Nickname}";
 
@@ -28,12 +31,19 @@ public class UI_Score : MonoBehaviour
         for (int i = 0; i < scoreDTOs.Count; ++i)
         {
             int ranking = i + 1;
-            UI_ScoreSlot newScoreSlot = Instantiate(_scoreSlotPrefab, _rankingContainer);
-            newScoreSlot.Refresh(scoreDTOs[i], ranking);
 
+            if (i >= _slots.Count)
+            {
+                UI_ScoreSlot newScoreSlot = Instantiate(_scoreSlotPrefab, _rankingContainer);
+                newScoreSlot.Refresh(scoreDTOs[i], ranking);
+            }
+            else
+            {
+                _slots[i].Refresh(scoreDTOs[i], ranking);
+            }
             if (scoreDTOs[i].Nickname == AccountManager.Instance.Nickname)
             {
-                _myScoreSlot.Refresh(scoreDTOs[i], i);
+                _myScoreSlot.Refresh(scoreDTOs[i], ranking);
             }
         }
     }
