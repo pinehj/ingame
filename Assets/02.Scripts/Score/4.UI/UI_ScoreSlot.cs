@@ -7,8 +7,10 @@ public class UI_ScoreSlot : MonoBehaviour
     private TextMeshProUGUI _nickname;
     private TextMeshProUGUI _score;
 
-    public void Init(Score score)
+    public void Refresh(ScoreDTO scoreDTO, int ranking)
     {
-        
+        _ranking.text = ranking.ToString();
+        _nickname.text = scoreDTO.Nickname;
+        _score.text = scoreDTO.Scores.ToString();
     }
 }
