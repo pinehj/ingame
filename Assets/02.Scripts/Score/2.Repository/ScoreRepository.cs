@@ -21,7 +21,7 @@ public class ScoreRepository
         ScoreSaveData data = new ScoreSaveData(scores);
         string json = JsonUtility.ToJson(data);
 
-        PlayerPrefs.SetString(SAVE_KEY+ AccountManager.Instance.Nickname, json);
+        PlayerPrefs.SetString(SAVE_KEY, json);
     }
 
     public List<ScoreDTO> Load()
