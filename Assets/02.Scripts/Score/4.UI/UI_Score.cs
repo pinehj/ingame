@@ -12,6 +12,12 @@ public class UI_Score : MonoBehaviour
     [SerializeField] private Transform _rankingContainer;
     [SerializeField] private UI_ScoreSlot _scoreSlotPrefab;
 
+    private void Start()
+    {
+        ScoreManager.Instance.OnDataChanged += Refresh;
+        Refresh();
+    }
+
     public void Refresh()
     {
         _currentScore.text = $"Score\n{ScoreManager.Instance.CurrentScore.Scores.ToString()}";
