@@ -5,9 +5,9 @@ using System;
 [Serializable]
 public class ScoreSaveData
 {
-    public List<Score> Scores;
+    public List<ScoreDTO> Scores;
 
-    public ScoreSaveData(List<Score> scores)
+    public ScoreSaveData(List<ScoreDTO> scores)
     {
         Scores = scores;
     }
@@ -16,7 +16,7 @@ public class ScoreSaveData
 public class ScoreRepository
 {
     private const string SAVE_KEY = nameof(ScoreRepository);
-    public void Save(List<Score> scores)
+    public void Save(List<ScoreDTO> scores)
     {
         ScoreSaveData data = new ScoreSaveData(scores);
         string json = JsonUtility.ToJson(data);
@@ -24,7 +24,7 @@ public class ScoreRepository
         PlayerPrefs.SetString(SAVE_KEY+ AccountManager.Instance.Nickname, json);
     }
 
-    public List<Score> Load()
+    public List<ScoreDTO> Load()
     {
         if (!PlayerPrefs.HasKey(SAVE_KEY))
         {

@@ -12,6 +12,12 @@ public class Score
         Nickname = nickname;
     }
 
+    public Score(ScoreDTO dto)
+    {
+        _scores = dto.Scores;
+        Nickname = dto.Nickname;
+    }
+
     public void AddScore(int score)
     {
         _scores += score;
