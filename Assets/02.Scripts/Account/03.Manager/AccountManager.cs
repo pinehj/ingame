@@ -8,6 +8,7 @@ public class AccountManager : BehaviourSingleton<AccountManager>
     private const string SALT = "123456";
     private Account _myAccount;
     public string Email => _myAccount.Email;
+    public string Nickname => _myAccount.Nickname;
     private AccountRepository _repository;
 
     private void Awake()
