@@ -44,21 +44,19 @@ public class ScoreManager : MonoBehaviour
         if(newList == null)
         {
             // 세이브 데이터가 없을 경우 현재 점수만 리스트에 추가
-            _scoreList = new List<Score>
-            {
-                new Score(50, "하얀악마"),
-                new Score(40, "별이되다"),
-                new Score(35, "붉은혜성"),
-                new Score(25, "네오목마"),
-                new Score(20, "하사웨이"),
-                new Score(15, "수성마녀")
-            };
             _scoreList.Add(_currentScore);
         }
         else
         {
             _scoreList = newList.ConvertAll(score => new Score(score));
         }
+        NicknameDuplicateCheck(50, "하얀악마");
+        NicknameDuplicateCheck(40, "별이되다");
+        NicknameDuplicateCheck(35, "붉은혜성");
+        NicknameDuplicateCheck(25, "네오목마");
+        NicknameDuplicateCheck(20, "하사웨이");
+        NicknameDuplicateCheck(15, "수성마녀");
+        NicknameDuplicateCheck(_currentScore.Scores, _currentScore.Nickname);
 
         // 점수 높은 순으로 정렬
         _scoreList.Sort((a, b) => b.Scores.CompareTo(a.Scores));
@@ -72,6 +70,12 @@ public class ScoreManager : MonoBehaviour
     private Score FindByNickname(string nickname)
     {
         return _scoreList.Find(score => score.Nickname == nickname);
+    }
+
+    private void NicknameDuplicateCheck(int score, string nickname)
+    {
+        if (_scoreList.Exists(s => s.Nickname == nickname)) return;
+        _scoreList.Add(new Score(score, nickname));
     }
 
     public void TryAddScore(int score)
