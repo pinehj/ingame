@@ -17,5 +17,5 @@ MonoBehaviour:
   _endLevel: 3
   _healthFactor: 1.05
   _damageFactor: 1.05
-  _spawnInterval: 20
-  _spawnRate: 30
+  _spawnInterval: 1
+  _spawnRate: 100

@@ -1,16 +1,17 @@
+using NUnit.Framework;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class UI_Score : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public TextMeshProUGUI CurrentScore;
+    public TextMeshProUGUI Name;
 
-    // Update is called once per frame
-    void Update()
+    public void Refresh()
     {
-        
+        //List<ScoreDTO> scoreDTO = ScoreManager.Instance.Scores;
+
+
     }
 }
