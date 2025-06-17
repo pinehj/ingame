@@ -78,6 +78,16 @@ public class ScoreManager : MonoBehaviour
     {
         _currentScore.AddScore(score);
 
+        Score highScore = FindByNickname(_currentScore.Nickname);
+        if (highScore != null && highScore.Scores < _currentScore.Scores)
+        {
+            _scoreList.Remove(highScore);
+            _scoreList.Add(_currentScore);
+
+            _scoreList.Sort((a, b) => b.Scores.CompareTo(a.Scores));
+            _repository.Save(ScoreList);
+        }
+
         OnDataChanged?.Invoke();
     }
 }
