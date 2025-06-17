@@ -43,4 +43,9 @@ public class ScoreManager : MonoBehaviour
 
         // 같은 닉네임의 데이터 score보다 현재 score가 커졌을 경우 갱신
     }
+
+    private Score FindByNickname(string nickname)
+    {
+        return _scoreList.Find(score => score.Nickname == nickname);
+    }
 }
