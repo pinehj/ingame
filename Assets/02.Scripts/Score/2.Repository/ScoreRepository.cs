@@ -19,6 +19,10 @@ public class ScoreRepository
     public void Save(List<ScoreDTO> scores)
     {
         ScoreSaveData data = new ScoreSaveData(scores);
+        foreach(ScoreDTO dto in scores)
+        {
+            Debug.Log($"{dto.Nickname} : {dto.Scores}");
+        }
         string json = JsonUtility.ToJson(data);
 
         PlayerPrefs.SetString(SAVE_KEY, json);

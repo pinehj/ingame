@@ -12,6 +12,9 @@ public class ScoreManager : MonoBehaviour
     public List<ScoreDTO> ScoreList => _scoreList.ConvertAll(score => new ScoreDTO(score));
     private Score _currentScore;
     public ScoreDTO CurrentScore => new ScoreDTO(_currentScore);
+
+    private bool _newHighScore = false;
+
     public Action OnDataChanged;
 
     private void Awake()
@@ -79,14 +82,17 @@ public class ScoreManager : MonoBehaviour
         _currentScore.AddScore(score);
 
         Score highScore = FindByNickname(_currentScore.Nickname);
-        if (highScore != null && highScore.Scores < _currentScore.Scores)
+        if(_newHighScore == false)
         {
-            _scoreList.Remove(highScore);
-            _scoreList.Add(_currentScore);
-
-            _scoreList.Sort((a, b) => b.Scores.CompareTo(a.Scores));
-            _repository.Save(ScoreList);
+            if (highScore != null && highScore.Scores < _currentScore.Scores)
+            {
+                _scoreList.Remove(highScore);
+                _scoreList.Add(_currentScore);
+                _newHighScore = true;
+            }
         }
+        _scoreList.Sort((a, b) => b.Scores.CompareTo(a.Scores));
+        _repository.Save(ScoreList);
 
         OnDataChanged?.Invoke();
     }
