@@ -44,23 +44,20 @@ public class ScoreManager : MonoBehaviour
         if(newList == null)
         {
             // 세이브 데이터가 없을 경우 현재 점수만 리스트에 추가
+            _scoreList = new List<Score>
+            {
+                new Score(50, "하얀악마"),
+                new Score(40, "별이되다"),
+                new Score(35, "붉은혜성"),
+                new Score(25, "네오목마"),
+                new Score(20, "하사웨이"),
+                new Score(15, "수성마녀")
+            };
             _scoreList.Add(_currentScore);
         }
         else
         {
             _scoreList = newList.ConvertAll(score => new Score(score));
-        }
-
-        // 같은 닉네임의 데이터 score보다 현재 score가 커졌을 경우 갱신
-        Score highScore = FindByNickname(_currentScore.Nickname);
-        if (highScore == null)
-        {
-            _scoreList.Add(_currentScore);
-        }
-        else if (highScore.Scores < _currentScore.Scores)
-        {
-            _scoreList.Remove(highScore);
-            _scoreList.Add(_currentScore);
         }
 
         // 점수 높은 순으로 정렬
