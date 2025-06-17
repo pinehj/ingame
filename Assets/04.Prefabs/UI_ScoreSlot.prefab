@@ -761,7 +761,7 @@ MonoBehaviour:
   _ranking: {fileID: 4997381281133203043}
   _nickname: {fileID: 9134414693433902422}
   _score: {fileID: 1788216022606246782}
-  RankImage:
+  _rankImage:
   - {fileID: 3204302177414579159}
   - {fileID: 818946420674607048}
   - {fileID: 781207708994972357}
