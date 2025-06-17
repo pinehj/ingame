@@ -77,5 +77,7 @@ public class ScoreManager : MonoBehaviour
     public void TryAddScore(int score)
     {
         _currentScore.AddScore(score);
+
+        OnDataChanged?.Invoke();
     }
 }
