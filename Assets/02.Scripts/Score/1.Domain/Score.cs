@@ -1,16 +1,19 @@
-using UnityEngine;
+using System;
 
-public class Score : MonoBehaviour
+public class Score
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private int _scores;
+    public int Scores => _scores;
+    public readonly string Nickname;
+
+    public Score(int scores, string nickname)
     {
-        
+        _scores = scores;
+        Nickname = nickname;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void AddScore(int score)
     {
-        
+        _scores += score;
     }
 }

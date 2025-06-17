@@ -1,16 +1,38 @@
 using UnityEngine;
+using System.Collections.Generic;
+using System;
 
-public class ScoreRepository : MonoBehaviour
+[Serializable]
+public class ScoreSaveData
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public List<Score> Scores;
+
+    public ScoreSaveData(List<Score> scores)
     {
-        
+        Scores = scores;
+    }
+}
+
+public class ScoreRepository
+{
+    private const string SAVE_KEY = nameof(ScoreRepository);
+    public void Save(List<Score> scores)
+    {
+        ScoreSaveData data = new ScoreSaveData(scores);
+        string json = JsonUtility.ToJson(data);
+
+        PlayerPrefs.SetString(SAVE_KEY+ AccountManager.Instance.Nickname, json);
     }
 
-    // Update is called once per frame
-    void Update()
+    public List<Score> Load()
     {
-        
+        if (!PlayerPrefs.HasKey(SAVE_KEY))
+        {
+            return null;
+        }
+
+        string json = PlayerPrefs.GetString(SAVE_KEY);
+        ScoreSaveData datas = JsonUtility.FromJson<ScoreSaveData>(json);
+        return datas.Scores;
     }
 }
