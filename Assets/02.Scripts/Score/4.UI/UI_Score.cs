@@ -8,6 +8,7 @@ public class UI_Score : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _currentScore;
     [SerializeField] private TextMeshProUGUI _name;
 
+    [SerializeField] private UI_ScoreSlot _myScoreSlot;
     [SerializeField] private Transform _rankingContainer;
     [SerializeField] private UI_ScoreSlot _scoreSlotPrefab;
 
@@ -16,13 +17,18 @@ public class UI_Score : MonoBehaviour
         _currentScore.text = $"Score\n{ScoreManager.Instance.CurrentScore.Scores.ToString()}";
         _name.text = $"Name\n{ScoreManager.Instance.CurrentScore.Nickname}";
 
-        //List<ScoreDTO> scoreDTO = ScoreManager.Instance.Scores;
+        List<ScoreDTO> scoreDTOs = ScoreManager.Instance.ScoreList;
 
-        //for(int i = 0; i< Scores.Count; ++i)
-        //{
-        //    int ranking = i + 1;
-        //    UI_ScoreSlot newScoreSlot = Instantiate(_scoreSlotPrefab, _rankingContainer);
-        //    newScoreSlot.Refresh(Scores[i], ranking);
-        //}
+        for (int i = 0; i < scoreDTOs.Count; ++i)
+        {
+            int ranking = i + 1;
+            UI_ScoreSlot newScoreSlot = Instantiate(_scoreSlotPrefab, _rankingContainer);
+            newScoreSlot.Refresh(scoreDTOs[i], ranking);
+
+            if (scoreDTOs[i].Nickname == AccountManager.Instance.Nickname)
+            {
+                _myScoreSlot.Refresh(scoreDTOs[i], i);
+            }
+        }
     }
 }

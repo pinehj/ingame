@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class UI_ScoreSlot : MonoBehaviour
 {
-    private TextMeshProUGUI _ranking;
-    private TextMeshProUGUI _nickname;
-    private TextMeshProUGUI _score;
+    [SerializeField] private TextMeshProUGUI _ranking;
+    [SerializeField] private TextMeshProUGUI _nickname;
+    [SerializeField] private TextMeshProUGUI _score;
 
     public void Refresh(ScoreDTO scoreDTO, int ranking)
     {
