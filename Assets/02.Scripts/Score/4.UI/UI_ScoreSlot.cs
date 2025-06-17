@@ -8,7 +8,7 @@ public class UI_ScoreSlot : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _ranking;
     [SerializeField] private TextMeshProUGUI _nickname;
     [SerializeField] private TextMeshProUGUI _score;
-    [SerializeField] private Image[] RankImage;
+    [SerializeField] private Image[] _rankImage;
 
     public void Refresh(ScoreDTO scoreDTO, int ranking)
     {
@@ -20,11 +20,11 @@ public class UI_ScoreSlot : MonoBehaviour
         {
             if (ranking == i+1)
             {
-                RankImage[i].gameObject.SetActive(true);
+                _rankImage[i].gameObject.SetActive(true);
             }
             else
             {
-                RankImage[i].gameObject.SetActive(false);
+                _rankImage[i].gameObject.SetActive(false);
             }
         }
     }
