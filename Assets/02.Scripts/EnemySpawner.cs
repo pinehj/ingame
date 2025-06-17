@@ -1,4 +1,5 @@
 using Unity.FPS.AI;
+using Unity.FPS.Game;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -12,22 +13,44 @@ public class EnemySpawner : MonoBehaviour
 
     private EnemyManager m_EnemyManager;
 
+    private StageLevel _stageLevel;
+
     private void Awake()
     {
          m_EnemyManager = FindFirstObjectByType<EnemyManager>();
         _linkedPatrolPath = GetComponentInChildren<PatrolPath>();
     }
+
+    private void Start()
+    {
+        Refresh();
+        StageManager.Instance.OnDataChanged += Refresh;
+    }
+    private void Refresh()
+    {
+        _stageLevel = StageManager.Instance.Stage.CurrentLevel;
+    }
     private void Update()
     {
-        if(_spawnTimer <= 0 && m_EnemyManager.Enemies.Count < _maxCount)
+        if(_stageLevel == null)
+        {
+            return;
+        }
+
+        _spawnTimer -= Time.deltaTime;
+        if (_spawnTimer <= 0 && m_EnemyManager.Enemies.Count < _maxCount)
         {
             _spawnTimer = _spawnDuration;
-            EnemyController newEnemy = Instantiate(_enemyPrefab, this.transform);
-            newEnemy.PatrolPath = _linkedPatrolPath;
+
+            if (Random.Range(0, 100) < _stageLevel.SpawnRate)
+            {
+
+                EnemyController newEnemy = Instantiate(_enemyPrefab, this.transform);
+                var health = newEnemy.GetComponent<Health>();
+                health.MaxHealth *= _stageLevel.HealthFactor;
+                newEnemy.PatrolPath = _linkedPatrolPath;
+            }
         }
-        else
-        {
-            _spawnTimer -= Time.deltaTime;
-        }
+
     }
 }
