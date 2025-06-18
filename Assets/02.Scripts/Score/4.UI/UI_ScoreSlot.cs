@@ -12,9 +12,9 @@ public class UI_ScoreSlot : MonoBehaviour
 
     public void Refresh(ScoreDTO scoreDTO, int ranking)
     {
-        _ranking.text = ranking.ToString();
+        _ranking.text = ranking.ToString("N0");
         _nickname.text = scoreDTO.Nickname;
-        _score.text = scoreDTO.Scores.ToString();
+        _score.text = scoreDTO.Scores.ToString("N0");
 
         for(int i = 0; i<3; i++)
         {

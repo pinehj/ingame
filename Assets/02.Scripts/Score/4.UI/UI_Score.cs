@@ -23,7 +23,7 @@ public class UI_Score : MonoBehaviour
     public void Refresh()
     {
         _slots = _rankingContainer.GetComponentsInChildren<UI_ScoreSlot>().ToList();
-        _currentScore.text = $"Score\n{ScoreManager.Instance.CurrentScore.Scores.ToString()}";
+        _currentScore.text = $"Score\n{ScoreManager.Instance.CurrentScore.Scores.ToString("N0")}";
         _name.text = $"Name\n{ScoreManager.Instance.CurrentScore.Nickname}";
 
         List<ScoreDTO> scoreDTOs = ScoreManager.Instance.ScoreList;
