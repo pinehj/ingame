@@ -8,6 +8,18 @@ public class Score
 
     public Score(int scores, string nickname)
     {
+
+        if(scores < 0)
+        {
+            throw new Exception("점수는 0보다 작을 수 없습니다.");
+        }
+        var nickNameSpecification = new AccountNicknameSpecification();
+        if (!nickNameSpecification.IsSatisfiedBy(nickname))
+        {
+            throw new Exception(nickNameSpecification.ErrorMessage);
+        }
+
+
         _scores = scores;
         Nickname = nickname;
     }
